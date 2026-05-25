@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 78px;
 }
 
 body {
@@ -48,7 +49,8 @@ a {
   justify-content: space-between;
   padding: 18px clamp(18px, 4vw, 54px);
   color: var(--white);
-  mix-blend-mode: difference;
+  background: rgba(10, 8, 8, 0.58);
+  backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -101,8 +103,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(10, 8, 8, 0.78), rgba(10, 8, 8, 0.18) 55%, rgba(10, 8, 8, 0.55)),
-    linear-gradient(0deg, rgba(10, 8, 8, 0.85), transparent 36%);
+    linear-gradient(90deg, rgba(10, 8, 8, 0.84), rgba(10, 8, 8, 0.16) 56%, rgba(10, 8, 8, 0.52)),
+    linear-gradient(0deg, rgba(10, 8, 8, 0.88), transparent 42%);
 }
 
 .hero-content {
@@ -110,7 +112,7 @@ a {
   z-index: 2;
   width: min(940px, calc(100% - 36px));
   margin: 0 auto;
-  padding-top: 25svh;
+  padding-top: 22svh;
   color: var(--white);
 }
 
@@ -140,7 +142,7 @@ h1 {
 }
 
 .lead {
-  max-width: 580px;
+  max-width: 720px;
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(20px, 2.8vw, 32px);
   line-height: 1.14;
@@ -176,11 +178,41 @@ h1 {
 }
 
 .intro-band,
+.scenarios,
 .formats,
-.resources,
 .gallery,
 .contact-band {
   padding: clamp(64px, 9vw, 118px) clamp(18px, 5vw, 72px);
+}
+
+.quick-panel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.quick-panel a {
+  min-height: 128px;
+  border-right: 1px solid rgba(21, 18, 15, 0.2);
+  border-bottom: 1px solid rgba(21, 18, 15, 0.2);
+  padding: 24px clamp(18px, 2.8vw, 34px);
+}
+
+.quick-panel span {
+  display: block;
+  margin-bottom: 22px;
+  color: rgba(21, 18, 15, 0.62);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.quick-panel strong {
+  display: block;
+  max-width: 270px;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.02;
 }
 
 .intro-band {
@@ -206,6 +238,60 @@ h1 {
 .intro-copy {
   color: var(--text-muted);
   font-size: clamp(18px, 2vw, 24px);
+}
+
+.scenarios {
+  background: var(--paper);
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 1.15fr;
+  gap: 10px;
+}
+
+.scenario-card {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(22px, 3.5vw, 38px);
+  background: var(--paper-strong);
+}
+
+.scenario-card.dark {
+  background: var(--aubergine);
+  color: var(--white);
+}
+
+.scenario-card span {
+  margin-bottom: auto;
+  color: var(--coral);
+  font-weight: 900;
+}
+
+.scenario-card.dark span {
+  color: var(--mint);
+}
+
+.scenario-card h3 {
+  max-width: 430px;
+  margin-bottom: 14px;
+  font-size: clamp(31px, 4vw, 56px);
+  line-height: 0.94;
+}
+
+.scenario-card p {
+  max-width: 430px;
+  margin-bottom: 0;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.scenario-card.dark p {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .formats {
@@ -277,6 +363,7 @@ h1 {
 
 .media-feature-copy {
   position: absolute;
+  left: clamp(18px, 7vw, 90px);
   right: clamp(18px, 7vw, 90px);
   bottom: clamp(22px, 6vw, 70px);
   max-width: 500px;
@@ -284,31 +371,6 @@ h1 {
   font-size: clamp(28px, 4vw, 52px);
   font-weight: 900;
   line-height: 1;
-}
-
-.resources {
-  background: var(--mint);
-}
-
-.resources .section-label {
-  color: var(--aubergine);
-}
-
-.resource-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.resource-list a {
-  min-height: 130px;
-  border: 1px solid rgba(21, 18, 15, 0.25);
-  border-radius: 8px;
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.34);
-  font-size: clamp(20px, 2.4vw, 32px);
-  font-weight: 900;
-  line-height: 1.05;
 }
 
 .gallery {
@@ -421,10 +483,6 @@ h1 {
 }
 
 @media (max-width: 920px) {
-  .site-header {
-    mix-blend-mode: normal;
-  }
-
   .nav-toggle {
     display: inline-flex;
     width: 44px;
@@ -466,9 +524,17 @@ h1 {
     display: block;
   }
 
-  .format-grid,
-  .resource-list {
+  .quick-panel,
+  .format-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .scenario-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-card {
+    min-height: 300px;
   }
 
   .gallery-grid {
@@ -489,10 +555,14 @@ h1 {
     font-size: 70px;
   }
 
+  .quick-panel,
   .format-grid,
-  .resource-list,
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .quick-panel a {
+    min-height: 112px;
   }
 
   .format-card {
@@ -513,5 +583,10 @@ h1 {
   .media-feature img {
     min-height: 66svh;
     height: 66svh;
+  }
+
+  .media-feature-copy {
+    max-width: calc(100% - 36px);
+    font-size: clamp(27px, 8vw, 38px);
   }
 }
