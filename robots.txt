@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dimarodnoy.github.io/dj-rodnoy-site/sitemap.xml
